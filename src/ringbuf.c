@@ -4,7 +4,7 @@
 
 struct EcsRingBuf {
     EcsArray *data;
-    uint32_t index;
+    int32_t index;
 };
 
 EcsRingBuf* ecs_ringbuf_new(
@@ -48,8 +48,9 @@ void* ecs_ringbuf_get(
     const EcsArrayParams *params,
     uint32_t index)
 {
-    uint32_t count = ecs_array_count(buffer->data);
-    index = ((buffer->index - count) + index) % ecs_array_size(buffer->data);
+    int32_t count = ecs_array_count(buffer->data);
+    int32_t size = ecs_array_size(buffer->data);
+    index = ((buffer->index - count + size) + (int32_t)index) % size;
     return ecs_array_get(buffer->data, params, index);
 }
 
