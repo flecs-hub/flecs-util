@@ -1,6 +1,6 @@
 {
     "id":"reflecs.util",
-    "type":"library",
+    "type":"package",
     "value": {
         "use": ["reflecs"]
     }
