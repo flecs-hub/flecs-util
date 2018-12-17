@@ -7,7 +7,7 @@
 #ifndef REFLECS_UTIL_STRBUF_H_
 #define REFLECS_UTIL_STRBUF_H_
 
-#include <reflecs/util/util.h>
+#include "prebaked.h"
 
 #ifdef __cplusplus
 extern "C" {
