@@ -1,6 +1,6 @@
 
-#include <reflecs/reflecs.h>
-#include <reflecs/util/ringbuf.h>
+#include <reflecs>
+#include <reflecs.util>
 
 struct EcsRingBuf {
     EcsArray *data;

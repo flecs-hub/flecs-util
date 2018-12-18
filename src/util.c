@@ -1,4 +1,4 @@
-#include <reflecs/util/util.h>
+#include <reflecs.util>
 
 int main(int argc, char *argv[]) {
     return 0;

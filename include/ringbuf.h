@@ -3,7 +3,7 @@
 #ifndef REFLECS_UTIL_RINGBUF_H_
 #define REFLECS_UTIL_RINGBUF_H_
 
-#include <reflecs/util/array.h>
+#include <reflecs.dir/util/array.h>
 #include "prebaked.h"
 
 #ifdef __cplusplus

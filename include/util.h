@@ -3,11 +3,10 @@
 
 #include "prebaked.h"
 #include "ringbuf.h"
-#include "strbuf.h"
-#include "array.h"
-#include "map.h"
-#include "stats.h"
-#include "time.h"
+#include "reflecs.dir/util/array.h"
+#include "reflecs.dir/util/map.h"
+#include "reflecs.dir/util/stats.h"
+#include "reflecs.dir/util/time.h"
 
 #ifdef __cplusplus
 extern "C" {
