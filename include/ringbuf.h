@@ -4,7 +4,7 @@
 #define REFLECS_UTIL_RINGBUF_H_
 
 #include <reflecs.dir/util/array.h>
-#include "prebaked.h"
+#include "bake_config.h"
 
 #ifdef __cplusplus
 extern "C" {
