@@ -1,7 +1,7 @@
 {
-    "id":"reflecs.util",
+    "id":"flecs.util",
     "type":"package",
     "value": {
-        "use": ["reflecs"]
+        "use": ["flecs"]
     }
 }

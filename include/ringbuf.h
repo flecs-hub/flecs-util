@@ -1,9 +1,9 @@
 
 
-#ifndef REFLECS_UTIL_RINGBUF_H_
-#define REFLECS_UTIL_RINGBUF_H_
+#ifndef FLECS_UTIL_RINGBUF_H_
+#define FLECS_UTIL_RINGBUF_H_
 
-#include <reflecs.dir/util/array.h>
+#include <flecs>
 #include "bake_config.h"
 
 #ifdef __cplusplus
@@ -12,36 +12,36 @@ extern "C" {
 
 typedef struct EcsRingBuf EcsRingBuf;
 
-REFLECS_UTIL_EXPORT
+FLECS_UTIL_EXPORT
 EcsRingBuf* ecs_ringbuf_new(
     const EcsArrayParams *params,
     uint32_t size);
 
-REFLECS_UTIL_EXPORT
+FLECS_UTIL_EXPORT
 void* ecs_ringbuf_push(
     EcsRingBuf *buffer,
     const EcsArrayParams *params);
 
-REFLECS_UTIL_EXPORT
+FLECS_UTIL_EXPORT
 void* ecs_ringbuf_get(
     EcsRingBuf *buffer,
     const EcsArrayParams *params,
     uint32_t index);
 
-REFLECS_UTIL_EXPORT
+FLECS_UTIL_EXPORT
 void* ecs_ringbuf_last(
     EcsRingBuf *buffer,
     const EcsArrayParams *params);
 
-REFLECS_UTIL_EXPORT
+FLECS_UTIL_EXPORT
 uint32_t ecs_ringbuf_index(
     EcsRingBuf *buffer);
 
-REFLECS_UTIL_EXPORT
+FLECS_UTIL_EXPORT
 uint32_t ecs_ringbuf_count(
     EcsRingBuf *buffer);
 
-REFLECS_UTIL_EXPORT
+FLECS_UTIL_EXPORT
 void ecs_ringbuf_free(
     EcsRingBuf *buffer);
 
