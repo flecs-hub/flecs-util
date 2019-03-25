@@ -2,16 +2,16 @@
 #include <flecs>
 #include <flecs.util>
 
-struct EcsRingBuf {
-    EcsArray *data;
+struct ecs_ringbuf_t {
+    ecs_array_t *data;
     int32_t index;
 };
 
-EcsRingBuf* ecs_ringbuf_new(
-    const EcsArrayParams *params,
+ecs_ringbuf_t* ecs_ringbuf_new(
+    const ecs_array_params_t *params,
     uint32_t size)
 {
-    EcsRingBuf *result = malloc(sizeof(EcsRingBuf));
+    ecs_ringbuf_t *result = malloc(sizeof(ecs_ringbuf_t));
     ecs_assert(result != NULL, ECS_OUT_OF_MEMORY, NULL);
 
     result->data = ecs_array_new(params, size);
@@ -20,8 +20,8 @@ EcsRingBuf* ecs_ringbuf_new(
 }
 
 void* ecs_ringbuf_push(
-    EcsRingBuf *buffer,
-    const EcsArrayParams *params)
+    ecs_ringbuf_t *buffer,
+    const ecs_array_params_t *params)
 {
     uint32_t size = ecs_array_size(buffer->data);
     uint32_t count = ecs_array_count(buffer->data);
@@ -39,15 +39,15 @@ void* ecs_ringbuf_push(
 }
 
 void ecs_ringbuf_free(
-    EcsRingBuf *buffer)
+    ecs_ringbuf_t *buffer)
 {
     ecs_array_free(buffer->data);
     free(buffer);
 }
 
 void* ecs_ringbuf_get(
-    EcsRingBuf *buffer,
-    const EcsArrayParams *params,
+    ecs_ringbuf_t *buffer,
+    const ecs_array_params_t *params,
     uint32_t index)
 {
     int32_t count = ecs_array_count(buffer->data);
@@ -57,8 +57,8 @@ void* ecs_ringbuf_get(
 }
 
 void* ecs_ringbuf_last(
-    EcsRingBuf *buffer,
-    const EcsArrayParams *params)
+    ecs_ringbuf_t *buffer,
+    const ecs_array_params_t *params)
 {
     uint32_t index = buffer->index;
     if (!index) {
@@ -69,13 +69,13 @@ void* ecs_ringbuf_last(
 }
 
 uint32_t ecs_ringbuf_index(
-    EcsRingBuf *buffer)
+    ecs_ringbuf_t *buffer)
 {
     return buffer->index;
 }
 
 uint32_t ecs_ringbuf_count(
-    EcsRingBuf *buffer)
+    ecs_ringbuf_t *buffer)
 {
     return ecs_array_count(buffer->data);
 }

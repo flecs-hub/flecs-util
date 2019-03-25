@@ -10,40 +10,40 @@
 extern "C" {
 #endif
 
-typedef struct EcsRingBuf EcsRingBuf;
+typedef struct ecs_ringbuf_t ecs_ringbuf_t;
 
 FLECS_UTIL_EXPORT
-EcsRingBuf* ecs_ringbuf_new(
-    const EcsArrayParams *params,
+ecs_ringbuf_t* ecs_ringbuf_new(
+    const ecs_array_params_t *params,
     uint32_t size);
 
 FLECS_UTIL_EXPORT
 void* ecs_ringbuf_push(
-    EcsRingBuf *buffer,
-    const EcsArrayParams *params);
+    ecs_ringbuf_t *buffer,
+    const ecs_array_params_t *params);
 
 FLECS_UTIL_EXPORT
 void* ecs_ringbuf_get(
-    EcsRingBuf *buffer,
-    const EcsArrayParams *params,
+    ecs_ringbuf_t *buffer,
+    const ecs_array_params_t *params,
     uint32_t index);
 
 FLECS_UTIL_EXPORT
 void* ecs_ringbuf_last(
-    EcsRingBuf *buffer,
-    const EcsArrayParams *params);
+    ecs_ringbuf_t *buffer,
+    const ecs_array_params_t *params);
 
 FLECS_UTIL_EXPORT
 uint32_t ecs_ringbuf_index(
-    EcsRingBuf *buffer);
+    ecs_ringbuf_t *buffer);
 
 FLECS_UTIL_EXPORT
 uint32_t ecs_ringbuf_count(
-    EcsRingBuf *buffer);
+    ecs_ringbuf_t *buffer);
 
 FLECS_UTIL_EXPORT
 void ecs_ringbuf_free(
-    EcsRingBuf *buffer);
+    ecs_ringbuf_t *buffer);
 
 #ifdef __cplusplus
 }
