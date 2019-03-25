@@ -12,6 +12,8 @@ EcsRingBuf* ecs_ringbuf_new(
     uint32_t size)
 {
     EcsRingBuf *result = malloc(sizeof(EcsRingBuf));
+    ecs_assert(result != NULL, ECS_OUT_OF_MEMORY, NULL);
+
     result->data = ecs_array_new(params, size);
     result->index = 0;
     return result;
