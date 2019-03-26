@@ -11,7 +11,7 @@ ecs_ringbuf_t* ecs_ringbuf_new(
     const ecs_array_params_t *params,
     uint32_t size)
 {
-    ecs_ringbuf_t *result = malloc(sizeof(ecs_ringbuf_t));
+    ecs_ringbuf_t *result = ecs_os_malloc(sizeof(ecs_ringbuf_t));
     ecs_assert(result != NULL, ECS_OUT_OF_MEMORY, NULL);
 
     result->data = ecs_array_new(params, size);
@@ -42,7 +42,7 @@ void ecs_ringbuf_free(
     ecs_ringbuf_t *buffer)
 {
     ecs_array_free(buffer->data);
-    free(buffer);
+    ecs_os_free(buffer);
 }
 
 void* ecs_ringbuf_get(
