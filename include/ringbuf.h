@@ -14,24 +14,24 @@ typedef struct ecs_ringbuf_t ecs_ringbuf_t;
 
 FLECS_UTIL_EXPORT
 ecs_ringbuf_t* ecs_ringbuf_new(
-    const ecs_array_params_t *params,
+    const ecs_vector_params_t *params,
     uint32_t size);
 
 FLECS_UTIL_EXPORT
 void* ecs_ringbuf_push(
     ecs_ringbuf_t *buffer,
-    const ecs_array_params_t *params);
+    const ecs_vector_params_t *params);
 
 FLECS_UTIL_EXPORT
 void* ecs_ringbuf_get(
     ecs_ringbuf_t *buffer,
-    const ecs_array_params_t *params,
+    const ecs_vector_params_t *params,
     uint32_t index);
 
 FLECS_UTIL_EXPORT
 void* ecs_ringbuf_last(
     ecs_ringbuf_t *buffer,
-    const ecs_array_params_t *params);
+    const ecs_vector_params_t *params);
 
 FLECS_UTIL_EXPORT
 uint32_t ecs_ringbuf_index(
