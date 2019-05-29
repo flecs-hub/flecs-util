@@ -1,6 +1,6 @@
 
-#include <flecs>
-#include <flecs.util>
+#include <flecs.h>
+#include <flecs_util.h>
 
 struct ecs_ringbuf_t {
     ecs_vector_t *data;

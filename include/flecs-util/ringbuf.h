@@ -3,7 +3,7 @@
 #ifndef FLECS_UTIL_RINGBUF_H_
 #define FLECS_UTIL_RINGBUF_H_
 
-#include <flecs>
+#include <flecs.h>
 #include "bake_config.h"
 
 #ifdef __cplusplus
