@@ -390,3 +390,63 @@ void ecs_strbuf_reset(ecs_strbuf_t *b) {
 
     *b = ECS_STRBUF_INIT;
 }
+
+void ecs_strbuf_list_push(
+    ecs_strbuf_t *buffer,
+    const char *list_open,
+    const char *separator)
+{
+    buffer->list_sp ++;
+    buffer->list_stack[buffer->list_sp].count = 0;
+    buffer->list_stack[buffer->list_sp].separator = separator;
+
+    if (list_open) {
+        ecs_strbuf_appendstr(buffer, list_open);
+    }
+}
+
+void ecs_strbuf_list_pop(
+    ecs_strbuf_t *buffer,
+    const char *list_close)
+{
+    buffer->list_sp --;
+    
+    if (list_close) {
+        ecs_strbuf_appendstr(buffer, list_close);
+    }
+}
+
+void ecs_strbuf_list_next(
+    ecs_strbuf_t *buffer)
+{
+    uint32_t list_sp = buffer->list_sp;
+    if (buffer->list_stack[list_sp].count != 0) {
+        ecs_strbuf_appendstr(buffer, buffer->list_stack[list_sp].separator);
+    }
+    buffer->list_stack[list_sp].count ++;
+}
+
+bool ecs_strbuf_list_append(
+    ecs_strbuf_t *buffer,
+    const char *fmt,
+    ...)
+{
+    ecs_strbuf_list_next(buffer);
+
+    va_list args;
+    va_start(args, fmt);
+    bool result = ecs_strbuf_append_intern(
+        buffer, fmt, -1, true, args
+    );
+    va_end(args);
+
+    return result;
+}
+
+bool ecs_strbuf_list_appendstr(
+    ecs_strbuf_t *buffer,
+    const char *str)
+{
+    ecs_strbuf_list_next(buffer);
+    return ecs_strbuf_appendstr(buffer, str);
+}

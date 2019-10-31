@@ -7,6 +7,7 @@ extern "C" {
 
 #define ECS_STRBUF_INIT (ecs_strbuf_t){0}
 #define ECS_STRBUF_ELEMENT_SIZE (511)
+#define ECS_STRBUF_MAX_LIST_DEPTH (32)
 
 /* A buffer builds up a list of elements which individually can be up to N bytes
  * large. While appending, data is added to these elements. More elements are
@@ -37,6 +38,11 @@ typedef struct ecs_strbuf_element_str {
     char *alloc_str;
 } ecs_strbuf_element_str;
 
+typedef struct ecs_strbuf_list_elem {
+    uint32_t count;
+    const char *separator;
+} ecs_strbuf_list_elem;
+
 typedef struct ecs_strbuf_t {
     /* When set by an application, append will write to this buffer */
     char *buf;
@@ -55,6 +61,11 @@ typedef struct ecs_strbuf_t {
 
     /* The current element being appended to */
     ecs_strbuf_element *current;
+
+    /* Stack that keeps track of number of list elements, used for conditionally
+     * inserting a separator */
+    ecs_strbuf_list_elem list_stack[ECS_STRBUF_MAX_LIST_DEPTH];
+    uint32_t list_sp;
 } ecs_strbuf_t;
 
 /* Append format string to a buffer.
@@ -118,6 +129,37 @@ char *ecs_strbuf_get(
 UT_EXPORT
 void ecs_strbuf_reset(
     ecs_strbuf_t *buffer);
+
+/* Push a list */
+UT_EXPORT
+void ecs_strbuf_list_push(
+    ecs_strbuf_t *buffer,
+    const char *list_open,
+    const char *separator);
+
+/* Pop a new list */
+UT_EXPORT
+void ecs_strbuf_list_pop(
+    ecs_strbuf_t *buffer,
+    const char *list_close);
+
+/* Insert a new element in list */
+UT_EXPORT
+void ecs_strbuf_list_next(
+    ecs_strbuf_t *buffer);
+
+/* Append formatted string as a new element in list */
+UT_EXPORT
+bool ecs_strbuf_list_append(
+    ecs_strbuf_t *buffer,
+    const char *fmt,
+    ...);
+
+/* Append string as a new element in list */
+UT_EXPORT
+bool ecs_strbuf_list_appendstr(
+    ecs_strbuf_t *buffer,
+    const char *str);
 
 #ifdef __cplusplus
 }
